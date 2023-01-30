@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Document Search</title>
+
+    <style>
+      /* Define styling for the search bar */
+      #search-container {
+        display: flex;
+        align-items: center;
+        padding: 20px;
+      }
+
+      #search-input {
+        width: 50%;
+        height: 40px;
+        font-size: 16px;
+        border-radius: 5px;
+        margin-right: 10px;
+      }
+        
+      .token {
+            display: inline-block;
+            padding: 5px;
+            font-size: 13px;
+            margin: 3px;
+            border-radius: 5px;
+            background-color: #eee;
+        }
+
+      #search-button {
+        width: 8%;
+        height: 40px;
+        background-color: blue;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      /* Define styling for the results table */
+      #results-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      #results-table th, #results-table td {
+        border: 1px solid black;
+        padding: 10px;
+      }
+
+      #results-table th {
+        background-color: lightgray;
+      }
+
+        
+    </style>
+  </head>
+  <body>
+      
+   <div id="search-container">
+     <input id="search-input" autocomplete="off" type="text" placeholder="Enter your query here. For empty input, the AI will pick for you.">
+     <button id="search-button">Search</button>
+   </div>
+      
+    <div id="results-container">
+      <!-- Results will be dynamically added here -->
+    </div>
+      
+      <!-- Include jQuery library for making AJAX requests -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        
+     function submitQuery() {
+        var query = $("#search-input").val();
+        $.ajax({
+          type: "GET",
+          url: "/search",
+          data: { "query": query },
+          success: function(data) {
+            // Update the results container with the returned data
+            $("#results-container").html(data);
+          }
+        })
+      };
+        
+      // Make an AJAX request when the search button is clicked
+      $("#search-button").click(submitQuery);
+
+      // Submit the query when the enter key is pressed
+      $("#search-input").keypress(function(e) {
+        if (e.which == 13) {
+          submitQuery();
+        }
+      });
+        
+        
+    </script>
+      
+      
+  </body>
+</html>

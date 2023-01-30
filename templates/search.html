@@ -1,0 +1,25 @@
+<div>
+    <h2> Query </h2>
+    <p> {{ query }} </p>
+    {% for token in  tokens %}
+    <div class="token"> {{ token.name }} {{ "%.2f"|format(token.weight) }} </div>
+    {% endfor %}
+</div>
+
+<table id="results-table">
+  <tr>
+    <th>Score</th>
+    <th>ID</th>
+    <th>Title</th>
+    <th>Description</th>
+  </tr>
+  {% for result in results %}
+  <tr>
+    <td>{{ result.score }}</td>
+      <td> <a href= "https://arxiv.org/abs/{{ result.id }}" > {{ result.id }} </a></td>
+    <td>{{ result.title }}</td>
+    <td>{{ result.description }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
