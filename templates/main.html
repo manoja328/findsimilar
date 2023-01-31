@@ -9,9 +9,20 @@
       #search-container {
         display: flex;
         align-items: center;
-        padding: 20px;
+        padding: 10px;
       }
 
+      #navigation {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        font-size: 16px;
+      }
+        
+      a {
+       text-decoration: none;
+      }
+        
       #search-input {
         width: 50%;
         height: 40px;
@@ -60,7 +71,9 @@
     </style>
   </head>
   <body>
-      
+   <div id="navigation">
+   <a href="{{ url_for('plot_tsne2d') }}"> Visualize Embeddings </a> /
+   </div>
    <div id="search-container">
      <input id="search-input" autocomplete="off" type="text" placeholder="Enter your query here. For empty input, the AI will pick for you.">
      <button id="search-button">Search</button>
